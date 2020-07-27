@@ -392,6 +392,18 @@
             <!-- /sidebar Menu -->
           </div>
           <!-- /module sidebar -->
+          <!-- Module Container -->
+          <div class="dt-module__container" v-if="!$store.state.chatsModule.activeChat">
+            <div class="dt-module__content">
+              <div
+                class="dt-module__content-inner h-100 d-flex flex-column justify-content-center align-items-center"
+              >
+                <div class="icon icon-message icon-fw icon-7x mb-2"></div>
+                <h1 class="display-4">Selecciona un usuario para empezar la conversación</h1>
+              </div>
+            </div>
+          </div>
+          <!-- /module container -->
           <router-view v-if="isDataReady" :key="rerender"></router-view>
           <!-- <chat-window :activeChat="activeChat"></chat-window> -->
           <!-- Module Container -->
@@ -452,7 +464,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dt-module__sidebar {
-  width: 1500px !important;
-}
+// .dt-module__sidebar {
+//   width: 1500px !important;
+// }
 </style>

@@ -88,7 +88,6 @@ export default {
     return {
       perPage: 10,
       currentPage: 1,
-      tempMessages: [],
       fields: [
         "N°",
         { key: "first_name", label: "Nombres" },
@@ -101,12 +100,15 @@ export default {
   },
   async mounted() {
     try {
-      this.tempMessages = this.$deepCopy(
-        await this.$store.dispatch("tempMessagesModule/list")
-      );
+      await this.$store.dispatch("tempMessagesModule/list");
     } catch (error) {
       console.log("algo salio mal...", error);
     }
+  },
+  computed: {
+    tempMessages() {
+      return this.$store.state.tempMessagesModule.tempMessages;
+    },
   },
   methods: {
     attendClient(fbId, clientId, sellerId) {
