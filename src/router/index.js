@@ -1,30 +1,61 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login"),
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+    path: "/",
+    name: "admin",
+    redirect: {
+      name: "dashboard",
+    },
+    component: () => import("@/layouts/admin.vue"),
+    children: [
+      {
+        path: "/dashboard",
+        name: "dashboard",
+        component: () => import("@/views/adminPanel/dashboard"),
+      },
+      {
+        path: "/clientes",
+        name: "clients",
+        component: () => import("@/views/adminPanel/clients"),
+      },
+      {
+        path: "/chat",
+        name: "chat",
+        component: () => import("@/views/adminPanel/chat"),
+        children: [
+          {
+            path: ":chatId",
+            name: "chatWindow",
+            component: () => import("@/components/adminPanel/chat/chatWindow"),
+          },
+        ],
+      },
+      {
+        path: "/configuracion",
+        name: "config",
+        component: () => import("@/views/adminPanel/config"),
+      },
+      {
+        path: "/catalogo",
+        name: "catalog",
+        component: () => import("@/views/adminPanel/catalog"),
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

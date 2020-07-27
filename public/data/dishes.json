@@ -1,0 +1,15 @@
+[{
+        "_id": 1,
+        "name": "Ají de gallina",
+        "price": 40,
+        "img": "#",
+        "type": "Entrada"
+    },
+    {
+        "_id": 2,
+        "name": "Caldo de res",
+        "price": 40,
+        "img": "#",
+        "type": "Entrada"
+    }
+]

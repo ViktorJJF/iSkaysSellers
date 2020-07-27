@@ -1,4 +1,4 @@
-# sellersystem
+# jfbotspanel
 
 ## Project setup
 ```
